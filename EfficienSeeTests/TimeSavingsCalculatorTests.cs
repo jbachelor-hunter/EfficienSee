@@ -32,6 +32,7 @@ namespace EfficienSeeTests
 		[TestCase(30, 1, 52 * 5, 7800)]
 		[TestCase(3600, 1, 52 * 5, 936000)]
 		[TestCase(3600, 10, 52 * 5, 9360000)]
+        [TestCase(86400, 1, 5, 5 * 86400)]
         public void TestGetTotalTimeSavedForTaskReturnsCorrectAnswer(int secondsSavedPerTask, int taskFrequencyPerUnitOfTime,
                                                                      int taskLifetimeInUnitOfTime, double expectedResultInSeconds)
 		{

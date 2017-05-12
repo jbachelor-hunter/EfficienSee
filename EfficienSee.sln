@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfficienSee.iOS", "Efficien
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfficienSee.Droid", "EfficienSee.Droid\EfficienSee.Droid.csproj", "{6BF111F2-E8EC-4B7C-A08A-95F5CF90CACE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfficienSeeTests", "EfficienSeeTests\EfficienSeeTests.csproj", "{663E40B6-0277-4A12-8F8E-21BEEB7F0D15}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,5 +55,17 @@ Global
 		{6BF111F2-E8EC-4B7C-A08A-95F5CF90CACE}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{6BF111F2-E8EC-4B7C-A08A-95F5CF90CACE}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{6BF111F2-E8EC-4B7C-A08A-95F5CF90CACE}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{663E40B6-0277-4A12-8F8E-21BEEB7F0D15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{663E40B6-0277-4A12-8F8E-21BEEB7F0D15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{663E40B6-0277-4A12-8F8E-21BEEB7F0D15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{663E40B6-0277-4A12-8F8E-21BEEB7F0D15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{663E40B6-0277-4A12-8F8E-21BEEB7F0D15}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{663E40B6-0277-4A12-8F8E-21BEEB7F0D15}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{663E40B6-0277-4A12-8F8E-21BEEB7F0D15}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{663E40B6-0277-4A12-8F8E-21BEEB7F0D15}.Release|iPhone.Build.0 = Release|Any CPU
+		{663E40B6-0277-4A12-8F8E-21BEEB7F0D15}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{663E40B6-0277-4A12-8F8E-21BEEB7F0D15}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{663E40B6-0277-4A12-8F8E-21BEEB7F0D15}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{663E40B6-0277-4A12-8F8E-21BEEB7F0D15}.Debug|iPhone.Build.0 = Debug|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -20,6 +20,8 @@ namespace EfficienSee.ViewModels
 		public MainPageViewModel()
 		{
 			Debug.WriteLine($"**** {this.GetType().Name}.{nameof(MainPageViewModel)}:  ctor");
+
+			Title = "EfficienSee!";
 		}
 
 		~MainPageViewModel()

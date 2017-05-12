@@ -8,5 +8,7 @@ namespace EfficienSee.Infrastructure
 	{
 		public static IEventAggregator GlobalEventAggregator { get; set; }
 		public static IUnityContainer GlobalUnityContainer { get; set; }
+
+
 	}
 }

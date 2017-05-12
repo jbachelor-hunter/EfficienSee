@@ -38,6 +38,7 @@
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="Infrastructure\Events.cs" />
     <Compile Include="Infrastructure\Globals.cs" />
+    <Compile Include="Services\TimeSavingsCalculator.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">

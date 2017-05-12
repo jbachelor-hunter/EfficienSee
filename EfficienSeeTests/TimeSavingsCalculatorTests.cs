@@ -32,20 +32,13 @@ namespace EfficienSeeTests
 		[TestCase(30, 1, 52 * 5, 7800)]
 		[TestCase(3600, 1, 52 * 5, 936000)]
 		[TestCase(3600, 10, 52 * 5, 9360000)]
-		public void TestGetTotalTimeSavedForTaskReturnsCorrectAnswer(int secondsSavedPerTask, int taskFrequencyPerDay,
-																	 int taskLifetimeDays, double expectedResultInSeconds)
+        public void TestGetTotalTimeSavedForTaskReturnsCorrectAnswer(int secondsSavedPerTask, int taskFrequencyPerUnitOfTime,
+                                                                     int taskLifetimeInUnitOfTime, double expectedResultInSeconds)
 		{
 			var actualResult = TimeSavingsCalculator.GetTotalTimeSavedForTask(TimeSpan.FromSeconds(secondsSavedPerTask),
-																			  taskFrequencyPerDay, taskLifetimeDays);
+																			  taskFrequencyPerUnitOfTime, taskLifetimeInUnitOfTime);
 
-			AssertTwoDoublesAreCloseEnough(expectedResultInSeconds, actualResult.TotalSeconds);
-		}
-
-
-		public void AssertTwoDoublesAreCloseEnough(double expectedValue, double actualValue, double acceptableDifference = 1.0)
-		{
-			double difference = Math.Abs(expectedValue - actualValue);
-			Assert.IsTrue(difference <= acceptableDifference, $"{expectedValue} is not close enough to {actualValue}");
+			TestUtilities.AssertTwoDoublesAreCloseEnough(expectedResultInSeconds, actualResult.TotalSeconds);
 		}
 	}
 }

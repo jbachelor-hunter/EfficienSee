@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Linq;
 using EfficienSee.ViewModels;
 using NUnit.Framework;
 
@@ -24,29 +27,52 @@ namespace EfficienSeeTests.ViewModels
         [Test]
         public void TestPropertiesSetToDefaultValuesOnInstantiation()
         {
+            var failMessage = string.Empty;
+            var failedProperties = new List<string>();
+
             if (string.IsNullOrWhiteSpace(mainPageViewModel.Title))
             {
-                Assert.Fail("Title was not set.");
+                failedProperties.Add($"Title:  {mainPageViewModel.Title}");
             }
 
             if (string.IsNullOrWhiteSpace(mainPageViewModel.TimeSavedLabelText))
             {
-                Assert.Fail("TimeSavedLabelText was not set.");
+                failedProperties.Add($"TimeSavedLabelText:  {mainPageViewModel.TimeSavedLabelText}");
             }
 
             if (mainPageViewModel.TimeSavedPerTask != 0)
             {
-                Assert.Fail("TimeSavedPerTask was not 0 to start.");
+                failedProperties.Add($"TimeSavedPerTask:  {mainPageViewModel.TimeSavedPerTask}");
             }
 
             if (string.IsNullOrWhiteSpace(mainPageViewModel.TaskFrequencyLabelText))
             {
-                Assert.Fail("TaskFrequencyLabelText was not set.");
+                failedProperties.Add($"TaskFrequencyLabelText:  {mainPageViewModel.TaskFrequencyLabelText}");
             }
 
             if (mainPageViewModel.TaskFrequency != 0)
             {
-                Assert.Fail("Task frequency not properly set.");
+                failedProperties.Add($"TaskFrequency:  {mainPageViewModel.TaskFrequency}");
+            }
+
+            if (mainPageViewModel.TaskLifetime != 0)
+            {
+                failedProperties.Add($"TaskLifetime:  {mainPageViewModel.TaskLifetime}");
+            }
+
+            if (string.IsNullOrWhiteSpace(mainPageViewModel.TaskLifetimeLabelText))
+            {
+                failedProperties.Add($"TaskLifetimeLabelText:  {mainPageViewModel.TaskLifetimeLabelText}");
+            }
+
+            if (failedProperties.Count > 0)
+            {
+                failMessage = $"Some properties not set to the correct initial value:  \n\t{string.Join("\n\t", failedProperties)}";
+                Assert.Fail(failMessage);
+            }
+            else
+            {
+                Assert.Pass();
             }
         }
 

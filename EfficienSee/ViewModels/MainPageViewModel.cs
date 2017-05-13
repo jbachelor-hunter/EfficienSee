@@ -45,6 +45,20 @@ namespace EfficienSee.ViewModels
             set { SetProperty(ref _taskFrequency, value); }
         }
 
+        private string _taskLifetimeLabelText;
+        public string TaskLifetimeLabelText
+        {
+            get { return _taskLifetimeLabelText; }
+            set { SetProperty(ref _taskLifetimeLabelText, value); }
+        }
+
+        private int _taskLifetime;
+        public int TaskLifetime
+        {
+            get { return _taskLifetime; }
+            set { SetProperty(ref _taskLifetime, value); }
+        }
+
         public MainPageViewModel()
         {
             Debug.WriteLine($"**** {this.GetType().Name}.{nameof(MainPageViewModel)}:  ctor");
@@ -52,6 +66,7 @@ namespace EfficienSee.ViewModels
             Title = "EfficienSee!";
             TimeSavedLabelText = "By how much time could you shorten your task, given some effort to make some part of it automated, or more efficient?";
             TaskFrequencyLabelText = "How frequently do you it?";
+            TaskLifetimeLabelText = "How long will you keep performing this task?";
         }
 
         ~MainPageViewModel()

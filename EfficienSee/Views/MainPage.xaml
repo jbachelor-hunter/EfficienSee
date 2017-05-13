@@ -18,6 +18,7 @@
             <RowDefinition Height="50"/>
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -91,6 +92,40 @@
                     x:Name="TaskFrequencyValueLabel"
                     AutomationId="TaskFrequencyValueLabel"
                     Text="{Binding TaskFrequency}"
+                    Grid.Column="1"
+                    HorizontalOptions="End"
+                    VerticalOptions="Center" />
+            </Grid>
+        </StackLayout>
+        <StackLayout
+            Grid.Row="3"
+            Padding="15"
+            x:Name="TaskLifetimeStackLayout"
+            AutomationId="TaskLifetimeStackLayout">
+            <Label
+                x:Name="TaskLifetimeLabel"
+                AutomationId="TaskLifetimeLabel"
+                Text="{Binding TaskLifetimeLabelText}" />
+            <Grid
+                ColumnSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="5*" />
+                    <ColumnDefinition
+                        Width="*" />
+                </Grid.ColumnDefinitions>
+                <Slider
+                    x:Name="TaskLifetimeSlider"
+                    AutomationId="TaskLifetimeSlider"
+                    Value="{Binding TaskLifetime}"
+                    Grid.Column="0"
+                    Minimum="0"
+                    Maximum="500"
+                    VerticalOptions="CenterAndExpand" />
+                <Label
+                    x:Name="TaskLifetimeValueLabel"
+                    AutomationId="TaskLifetimeValueLabel"
+                    Text="{Binding TaskLifetime}"
                     Grid.Column="1"
                     HorizontalOptions="End"
                     VerticalOptions="Center" />

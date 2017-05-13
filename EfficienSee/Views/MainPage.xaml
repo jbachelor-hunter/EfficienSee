@@ -4,8 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
     prism:ViewModelLocator.AutowireViewModel="True"
-    x:Class="EfficienSee.Views.MainPage"
-    Title="{Binding Title}">
+    x:Class="EfficienSee.Views.MainPage">
     <ContentPage.Padding>
         <OnPlatform
             x:TypeArguments="Thickness"
@@ -16,16 +15,20 @@
         x:Name="MainOuterGrid"
         AutomationId="MainOuterGrid">
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="50"/>
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <StackLayout
+        <Label
             Grid.Row="0"
+            Text="{Binding Title}"
+            HorizontalOptions="Center"
+            FontSize="Large"
+            TextColor="Navy" />
+        <StackLayout
+            Grid.Row="1"
             Padding="15"
             x:Name="TimeSavedStack"
             AutomationId="TimeSavedStack">

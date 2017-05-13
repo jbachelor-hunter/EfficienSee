@@ -31,8 +31,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TimeSavingsCalculatorTests.cs" />
     <Compile Include="TestUtilities.cs" />
+    <Compile Include="Services\TimeSavingsCalculatorTests.cs" />
+    <Compile Include="ViewModels\MainPageViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -42,6 +43,10 @@
       <Project>{89C1BB95-F2EB-4266-BFE7-6C661AA23972}</Project>
       <Name>EfficienSee</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

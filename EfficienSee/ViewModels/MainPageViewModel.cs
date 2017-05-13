@@ -8,44 +8,66 @@ using System.Diagnostics;
 
 namespace EfficienSee.ViewModels
 {
-	public class MainPageViewModel : BindableBase, INavigatingAware, IDestructible
-	{
-		private string _title;
-		public string Title
-		{
-			get { return _title; }
-			set { SetProperty(ref _title, value); }
-		}
+    public class MainPageViewModel : BindableBase, INavigatingAware, IDestructible
+    {
+        private string _title;
+        public string Title
+        {
+            get { return _title; }
+            set { SetProperty(ref _title, value); }
+        }
 
-		public MainPageViewModel()
-		{
-			Debug.WriteLine($"**** {this.GetType().Name}.{nameof(MainPageViewModel)}:  ctor");
+        private string _timeSavedLabelText;
+        public string TimeSavedLabelText
+        {
+            get { return _timeSavedLabelText; }
+            set { SetProperty(ref _timeSavedLabelText, value); }
+        }
 
-			Title = "EfficienSee!";
-		}
+        private int _timeSavedPerTask;
+        public int TimeSavedPerTask
+        {
+            get { return _timeSavedPerTask; }
+            set
+            {
+                if (value != _timeSavedPerTask)
+                {
+                    Debug.WriteLine($"**** {this.GetType().Name}.{nameof(TimeSavedPerTask)}:  Setting to {value}");
+                    SetProperty(ref _timeSavedPerTask, value);
+                }
+            }
+        }
 
-		~MainPageViewModel()
-		{
-			Debug.WriteLine($"**** {this.GetType().Name}.{nameof(MainPageViewModel)}:  dtor");
-		}
+        public MainPageViewModel()
+        {
+            Debug.WriteLine($"**** {this.GetType().Name}.{nameof(MainPageViewModel)}:  ctor");
 
-		#region INavigatingAware
+            Title = "EfficienSee!";
+            TimeSavedLabelText = "Let's say you put some work into making some task more efficient. How much shorter could you make that task?";
+        }
 
-		public void OnNavigatingTo(NavigationParameters parameters)
-		{
-			Debug.WriteLine($"**** {this.GetType().Name}.{nameof(OnNavigatingTo)}");
-		}
+        ~MainPageViewModel()
+        {
+            Debug.WriteLine($"**** {this.GetType().Name}.{nameof(MainPageViewModel)}:  dtor");
+        }
 
-		#endregion End INavigatingAware
+        #region INavigatingAware
 
-		#region IDestructible
+        public void OnNavigatingTo(NavigationParameters parameters)
+        {
+            Debug.WriteLine($"**** {this.GetType().Name}.{nameof(OnNavigatingTo)}");
+        }
 
-		public void Destroy()
-		{
-			Debug.WriteLine($"**** {this.GetType().Name}.{nameof(Destroy)}");
-		}
+        #endregion End INavigatingAware
 
-		#endregion End IDestructible
-	}
+        #region IDestructible
+
+        public void Destroy()
+        {
+            Debug.WriteLine($"**** {this.GetType().Name}.{nameof(Destroy)}");
+        }
+
+        #endregion End IDestructible
+    }
 }
 

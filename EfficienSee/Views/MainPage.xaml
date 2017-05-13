@@ -1,10 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentPage
-	xmlns="http://xamarin.com/schemas/2014/forms"
-	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-	prism:ViewModelLocator.AutowireViewModel="True"
-	x:Class="EfficienSee.Views.MainPage"
-	Title="{Binding Title}">
-
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    x:Class="EfficienSee.Views.MainPage"
+    Title="{Binding Title}">
+    <ContentPage.Padding>
+        <OnPlatform
+            x:TypeArguments="Thickness"
+            iOS="15,20,15,0"
+            Android="15,0,15,0" />
+    </ContentPage.Padding>
+    <Grid
+        x:Name="MainOuterGrid"
+        AutomationId="MainOuterGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <StackLayout
+            Grid.Row="0"
+            Padding="15"
+            x:Name="TimeSavedStack"
+            AutomationId="TimeSavedStack">
+            <Label
+                x:Name="TimeSavedLabel"
+                AutomationId="TimeSavedLabel"
+                Text="{Binding TimeSavedLabelText}" />
+            <Grid
+                ColumnSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="5*" />
+                    <ColumnDefinition
+                        Width="*" />
+                </Grid.ColumnDefinitions>
+                <Slider
+                    x:Name="TimeSavedPerTaskSlider"
+                    AutomationId="TimeSavedPerTaskSlider"
+                    Value="{Binding TimeSavedPerTask}"
+                    Grid.Column="0"
+                    Minimum="0"
+                    Maximum="24"
+                    VerticalOptions="CenterAndExpand" />
+                <Label
+                    x:Name="TimeSavedValueLabel"
+                    AutomationId="TimeSavedValueLabel"
+                    Text="{Binding TimeSavedPerTask}"
+                    Grid.Column="1"
+                    HorizontalOptions="End"
+                    VerticalOptions="Center" />
+            </Grid>
+        </StackLayout>
+    </Grid>
 </ContentPage>

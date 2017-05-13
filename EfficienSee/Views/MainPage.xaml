@@ -147,7 +147,7 @@
             <Label
                 Text="{Binding MaxTimeToAllotLabelText}" />
             <Label
-                Text="{Binding MaxTimeToAllot}"
+                Text="{Binding MaxTimeToAllot, Converter={StaticResource intToSecondsDisplay}"
                 HorizontalOptions="Center"
                 FontSize="Large"
                 FontAttributes="Bold"

@@ -4,24 +4,26 @@ using System.Diagnostics;
 
 namespace EfficienSee
 {
-	public partial class App : PrismApplication
-	{
-		public App(IPlatformInitializer initializer = null) : base(initializer) { }
+    public partial class App : PrismApplication
+    {
+        public App() { InitializeComponent(); }
 
-		protected override void OnInitialized()
-		{
-			InitializeComponent();
-			Debug.WriteLine($"**** {this.GetType().Name}.{nameof(OnInitialized)}");
+        public App(IPlatformInitializer initializer = null) : base(initializer) { }
 
-			NavigationService.NavigateAsync($"MainPage");
-		}
+        protected override void OnInitialized()
+        {
+            InitializeComponent();
+            Debug.WriteLine($"**** {this.GetType().Name}.{nameof(OnInitialized)}");
 
-		protected override void RegisterTypes()
-		{
-			Debug.WriteLine($"**** {this.GetType().Name}.{nameof(RegisterTypes)}");
+            NavigationService.NavigateAsync($"MainPage");
+        }
 
-			Container.RegisterTypeForNavigation<MainPage>();
-		}
-	}
+        protected override void RegisterTypes()
+        {
+            Debug.WriteLine($"**** {this.GetType().Name}.{nameof(RegisterTypes)}");
+
+            Container.RegisterTypeForNavigation<MainPage>();
+        }
+    }
 }
 

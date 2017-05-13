@@ -4,6 +4,8 @@ using System.Text;
 using System.Linq;
 using EfficienSee.ViewModels;
 using NUnit.Framework;
+using NSubstitute;
+using EfficienSee.Services;
 
 namespace EfficienSeeTests.ViewModels
 {
@@ -11,6 +13,7 @@ namespace EfficienSeeTests.ViewModels
     public class MainPageViewModelTests
     {
         MainPageViewModel mainPageViewModel;
+        ITimeSavingsCalculator timeSavingsCalculatorSub;
 
         [TestFixtureSetUp]
         public void ClassInit()
@@ -21,7 +24,9 @@ namespace EfficienSeeTests.ViewModels
         [SetUp]
         public void TestInit()
         {
-            mainPageViewModel = new MainPageViewModel();
+            timeSavingsCalculatorSub = Substitute.For<ITimeSavingsCalculator>();
+
+            mainPageViewModel = new MainPageViewModel(timeSavingsCalculatorSub);
         }
 
         [Test]
@@ -63,6 +68,16 @@ namespace EfficienSeeTests.ViewModels
             if (string.IsNullOrWhiteSpace(mainPageViewModel.TaskLifetimeLabelText))
             {
                 failedProperties.Add($"TaskLifetimeLabelText:  {mainPageViewModel.TaskLifetimeLabelText}");
+            }
+
+            if (string.IsNullOrWhiteSpace(mainPageViewModel.MaxTimeToAllotLabelText))
+            {
+                failedProperties.Add($"MaxTimeToAllotLabelText:  {mainPageViewModel.MaxTimeToAllotLabelText}");
+            }
+
+            if (TestUtilities.AreTwoDoublesCloseEnough(0.0, 0.0) == false)
+            {
+                failedProperties.Add($"MaxTimeToAllot:  {mainPageViewModel.MaxTimeToAllot}");
             }
 
             if (failedProperties.Count > 0)
@@ -173,6 +188,50 @@ namespace EfficienSeeTests.ViewModels
 
             mainPageViewModel.TaskFrequency = 90;
             Assert.IsTrue(fired);
+        }
+
+        [Test]
+        public void TestPropertyChangeFiredForTaskLifetime()
+        {
+            mainPageViewModel.TaskLifetime = 0;
+            bool fired = false;
+            mainPageViewModel.PropertyChanged += (sender, e) =>
+            {
+                if (e.PropertyName == "TaskLifetime")
+                {
+                    fired = true;
+                }
+            };
+
+            mainPageViewModel.TaskLifetime = 50;
+            Assert.IsTrue(fired);
+        }
+
+        [Test]
+        public void MaxTimeToAllotRecalculatesWhenTaskLifetimeChanges()
+        {
+            mainPageViewModel.TaskLifetime += 50;
+
+            timeSavingsCalculatorSub.Received(1).GetTotalTimeSavedForTask(
+                Arg.Any<TimeSpan>(), Arg.Any<int>(), mainPageViewModel.TaskLifetime);
+        }
+
+        [Test]
+        public void MaxTimeToAllotRecalculatesWhenTaskFrequencyChanges()
+        {
+            mainPageViewModel.TaskFrequency += 5;
+
+            timeSavingsCalculatorSub.Received(1).GetTotalTimeSavedForTask(
+                Arg.Any<TimeSpan>(), 5, Arg.Any<int>());
+        }
+
+        [Test]
+        public void MaxTimeToAllotRecalculatesWhenTimeSavedPerTaskChanges()
+        {
+            mainPageViewModel.TimeSavedPerTask += 5;
+
+            timeSavingsCalculatorSub.Received(1).GetTotalTimeSavedForTask(
+                TimeSpan.FromHours(5), Arg.Any<int>(), Arg.Any<int>());
         }
     }
 }

@@ -7,6 +7,8 @@ namespace EfficienSeeTests.Services
     [TestFixture()]
     public class TimeSavingsCalculatorTests
     {
+        TimeSavingsCalculator timeSavingsCalculator;
+
         [TestFixtureSetUp]
         public void ClassInit()
         {
@@ -16,7 +18,7 @@ namespace EfficienSeeTests.Services
         [SetUp]
         public void TestInit()
         {
-
+            timeSavingsCalculator = new TimeSavingsCalculator();
         }
 
         [Test]
@@ -36,7 +38,7 @@ namespace EfficienSeeTests.Services
         public void TestGetTotalTimeSavedForTaskReturnsCorrectAnswer(int secondsSavedPerTask, int taskFrequencyPerUnitOfTime,
                                                                      int taskLifetimeInUnitOfTime, double expectedResultInSeconds)
         {
-            var actualResult = TimeSavingsCalculator.GetTotalTimeSavedForTask(TimeSpan.FromSeconds(secondsSavedPerTask),
+            var actualResult = timeSavingsCalculator.GetTotalTimeSavedForTask(TimeSpan.FromSeconds(secondsSavedPerTask),
                                                                               taskFrequencyPerUnitOfTime, taskLifetimeInUnitOfTime);
 
             TestUtilities.AssertTwoDoublesAreCloseEnough(expectedResultInSeconds, actualResult.TotalSeconds);

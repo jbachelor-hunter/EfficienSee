@@ -15,7 +15,9 @@
         x:Name="MainOuterGrid"
         AutomationId="MainOuterGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition
+                Height="50" />
+            <RowDefinition />
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
@@ -23,12 +25,15 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
+        <!--                                                    Header Row    -->
         <Label
             Grid.Row="0"
             Text="{Binding Title}"
             HorizontalOptions="Center"
             FontSize="Large"
+            FontAttributes="Bold"
             TextColor="Navy" />
+        <!--                                                    Time saved    -->
         <StackLayout
             Grid.Row="1"
             Padding="15"
@@ -63,6 +68,7 @@
                     VerticalOptions="Center" />
             </Grid>
         </StackLayout>
+        <!--                                                    Task frequency    -->
         <StackLayout
             Grid.Row="2"
             Padding="15"
@@ -97,6 +103,7 @@
                     VerticalOptions="Center" />
             </Grid>
         </StackLayout>
+        <!--                                                    Task Lifetime    -->
         <StackLayout
             Grid.Row="3"
             Padding="15"
@@ -130,6 +137,21 @@
                     HorizontalOptions="End"
                     VerticalOptions="Center" />
             </Grid>
+        </StackLayout>
+        <!--                                                    Max time to allot to efficieny    -->
+        <StackLayout
+            Grid.Row="4"
+            Padding="15"
+            x:Name="MaxTimeToAllot"
+            AutomationId="MaxTimeToAllot">
+            <Label
+                Text="{Binding MaxTimeToAllotLabelText}" />
+            <Label
+                Text="{Binding MaxTimeToAllot}"
+                HorizontalOptions="Center"
+                FontSize="Large"
+                FontAttributes="Bold"
+                TextColor="Navy" />
         </StackLayout>
     </Grid>
 </ContentPage>

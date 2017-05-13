@@ -5,11 +5,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
+using EfficienSee.Services;
 
 namespace EfficienSee.ViewModels
 {
     public class MainPageViewModel : BindableBase, INavigatingAware, IDestructible
     {
+        private ITimeSavingsCalculator _timeSavingsCalculator;
+
         private string _title;
         public string Title
         {
@@ -28,7 +31,14 @@ namespace EfficienSee.ViewModels
         public int TimeSavedPerTask
         {
             get { return _timeSavedPerTask; }
-            set { SetProperty(ref _timeSavedPerTask, value); }
+            set
+            {
+                var valueDidChange = SetProperty(ref _timeSavedPerTask, value);
+                if (valueDidChange)
+                {
+                    MaxTimeToAllot = GetMaxTimeToAllot();
+                }
+            }
         }
 
         private string _taskFrequencyLabelText;
@@ -42,7 +52,14 @@ namespace EfficienSee.ViewModels
         public int TaskFrequency
         {
             get { return _taskFrequency; }
-            set { SetProperty(ref _taskFrequency, value); }
+            set
+            {
+                var valueDidChange = SetProperty(ref _taskFrequency, value);
+                if (valueDidChange)
+                {
+                    MaxTimeToAllot = GetMaxTimeToAllot();
+                }
+            }
         }
 
         private string _taskLifetimeLabelText;
@@ -56,17 +73,41 @@ namespace EfficienSee.ViewModels
         public int TaskLifetime
         {
             get { return _taskLifetime; }
-            set { SetProperty(ref _taskLifetime, value); }
+            set
+            {
+                var valueDidChange = SetProperty(ref _taskLifetime, value);
+                if (valueDidChange)
+                {
+                    MaxTimeToAllot = GetMaxTimeToAllot();
+                }
+            }
         }
 
-        public MainPageViewModel()
+        private string _maxTimeToAllotLabelText;
+        public string MaxTimeToAllotLabelText
+        {
+            get { return _maxTimeToAllotLabelText; }
+            set { SetProperty(ref _maxTimeToAllotLabelText, value); }
+        }
+
+        private double _maxTimeToAllot;
+        public double MaxTimeToAllot
+        {
+            get { return _maxTimeToAllot; }
+            set { SetProperty(ref _maxTimeToAllot, value); }
+        }
+
+        public MainPageViewModel(ITimeSavingsCalculator timeSavingsCalculator)
         {
             Debug.WriteLine($"**** {this.GetType().Name}.{nameof(MainPageViewModel)}:  ctor");
 
-            Title = "EfficienSee!";
+            _timeSavingsCalculator = timeSavingsCalculator;
+
+            Title = "EfficienSee";
             TimeSavedLabelText = "By how much time could you shorten your task, given some effort to make some part of it automated, or more efficient?";
             TaskFrequencyLabelText = "How frequently do you it?";
             TaskLifetimeLabelText = "How long will you keep performing this task?";
+            MaxTimeToAllotLabelText = "You can spend this much time before spending more time than you will save:";
         }
 
         ~MainPageViewModel()
@@ -91,6 +132,15 @@ namespace EfficienSee.ViewModels
         }
 
         #endregion End IDestructible
+
+        internal double GetMaxTimeToAllot()
+        {
+            Debug.WriteLine($"**** {this.GetType().Name}.{nameof(GetMaxTimeToAllot)}");
+            TimeSpan maxTime = _timeSavingsCalculator.GetTotalTimeSavedForTask(
+                TimeSpan.FromHours(TimeSavedPerTask), TaskFrequency, TaskLifetime);
+
+            return maxTime.TotalHours;
+        }
     }
 }
 

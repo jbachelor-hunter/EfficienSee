@@ -3,9 +3,9 @@ using System.Diagnostics;
 
 namespace EfficienSee.Services
 {
-    public static class TimeSavingsCalculator
+    public class TimeSavingsCalculator : ITimeSavingsCalculator
     {
-        public static TimeSpan GetTotalTimeSavedForTask(TimeSpan timeSavedPerTask, int taskFrequencyPerUnitOfTime,
+        public TimeSpan GetTotalTimeSavedForTask(TimeSpan timeSavedPerTask, int taskFrequencyPerUnitOfTime,
                                                                int taskLifetimeInUnitOfTime)
         {
             var secondsSavedPerUnitOfTime = timeSavedPerTask.TotalSeconds * taskFrequencyPerUnitOfTime;

@@ -17,6 +17,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -30,8 +31,8 @@
         <StackLayout
             Grid.Row="1"
             Padding="15"
-            x:Name="TimeSavedStack"
-            AutomationId="TimeSavedStack">
+            x:Name="TimeSavedStackLayout"
+            AutomationId="TimeSavedStackLayout">
             <Label
                 x:Name="TimeSavedLabel"
                 AutomationId="TimeSavedLabel"
@@ -56,6 +57,40 @@
                     x:Name="TimeSavedValueLabel"
                     AutomationId="TimeSavedValueLabel"
                     Text="{Binding TimeSavedPerTask}"
+                    Grid.Column="1"
+                    HorizontalOptions="End"
+                    VerticalOptions="Center" />
+            </Grid>
+        </StackLayout>
+        <StackLayout
+            Grid.Row="2"
+            Padding="15"
+            x:Name="TaskFrequencyStackLayout"
+            AutomationId="TaskFrequencyStackLayout">
+            <Label
+                x:Name="TaskFrequencyLabel"
+                AutomationId="TaskFrequencyLabel"
+                Text="{Binding TaskFrequencyLabelText}" />
+            <Grid
+                ColumnSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="5*" />
+                    <ColumnDefinition
+                        Width="*" />
+                </Grid.ColumnDefinitions>
+                <Slider
+                    x:Name="TaskFrequencySlider"
+                    AutomationId="TaskFrequencySlider"
+                    Value="{Binding TaskFrequency}"
+                    Grid.Column="0"
+                    Minimum="0"
+                    Maximum="100"
+                    VerticalOptions="CenterAndExpand" />
+                <Label
+                    x:Name="TaskFrequencyValueLabel"
+                    AutomationId="TaskFrequencyValueLabel"
+                    Text="{Binding TaskFrequency}"
                     Grid.Column="1"
                     HorizontalOptions="End"
                     VerticalOptions="Center" />

@@ -31,12 +31,22 @@ namespace EfficienSeeTests.ViewModels
 
             if (string.IsNullOrWhiteSpace(mainPageViewModel.TimeSavedLabelText))
             {
-                Assert.Fail("TimeSavedLabelText was not set");
+                Assert.Fail("TimeSavedLabelText was not set.");
             }
 
             if (mainPageViewModel.TimeSavedPerTask != 0)
             {
                 Assert.Fail("TimeSavedPerTask was not 0 to start.");
+            }
+
+            if (string.IsNullOrWhiteSpace(mainPageViewModel.TaskFrequencyLabelText))
+            {
+                Assert.Fail("TaskFrequencyLabelText was not set.");
+            }
+
+            if (mainPageViewModel.TaskFrequency != 0)
+            {
+                Assert.Fail("Task frequency not properly set.");
             }
         }
 
@@ -102,6 +112,40 @@ namespace EfficienSeeTests.ViewModels
             };
 
             mainPageViewModel.TimeSavedLabelText = "hot sauce";
+            Assert.IsTrue(fired);
+        }
+
+        [Test]
+        public void TestPropertyChangeFiredForTaskFrequencyLabelText()
+        {
+            mainPageViewModel.TaskFrequencyLabelText = string.Empty;
+            bool fired = false;
+            mainPageViewModel.PropertyChanged += (sender, e) =>
+            {
+                if (e.PropertyName == "TaskFrequencyLabelText")
+                {
+                    fired = true;
+                }
+            };
+
+            mainPageViewModel.TaskFrequencyLabelText = "hot sauce";
+            Assert.IsTrue(fired);
+        }
+
+        [Test]
+        public void TestPropertyChangeFiredForTaskFrequency()
+        {
+            mainPageViewModel.TaskFrequency = 0;
+            bool fired = false;
+            mainPageViewModel.PropertyChanged += (sender, e) =>
+            {
+                if (e.PropertyName == "TaskFrequency")
+                {
+                    fired = true;
+                }
+            };
+
+            mainPageViewModel.TaskFrequency = 90;
             Assert.IsTrue(fired);
         }
     }

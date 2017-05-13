@@ -31,12 +31,27 @@ namespace EfficienSee.ViewModels
             set { SetProperty(ref _timeSavedPerTask, value); }
         }
 
+        private string _taskFrequencyLabelText;
+        public string TaskFrequencyLabelText
+        {
+            get { return _taskFrequencyLabelText; }
+            set { SetProperty(ref _taskFrequencyLabelText, value); }
+        }
+
+        private int _taskFrequency;
+        public int TaskFrequency
+        {
+            get { return _taskFrequency; }
+            set { SetProperty(ref _taskFrequency, value); }
+        }
+
         public MainPageViewModel()
         {
             Debug.WriteLine($"**** {this.GetType().Name}.{nameof(MainPageViewModel)}:  ctor");
 
             Title = "EfficienSee!";
             TimeSavedLabelText = "By how much time could you shorten your task, given some effort to make some part of it automated, or more efficient?";
+            TaskFrequencyLabelText = "How frequently do you it?";
         }
 
         ~MainPageViewModel()

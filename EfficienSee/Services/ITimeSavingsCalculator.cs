@@ -4,6 +4,6 @@ namespace EfficienSee.Services
 {
     public interface ITimeSavingsCalculator
     {
-        TimeSpan GetTotalTimeSavedForTask(TimeSpan timeSavedPerTask, int taskFrequencyPerUnitOfTime, int taskLifetimeInUnitOfTime);
+        TimeSpan GetMaxTimeSaved(TimeSpan timeSavedPerTask, int taskFrequency, string taskFrequencyUnitOfTime, int taskLifetime, string taskLifetimeUnitOfTime);
     }
 }

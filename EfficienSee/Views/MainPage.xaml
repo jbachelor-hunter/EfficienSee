@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ContentPage
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-    prism:ViewModelLocator.AutowireViewModel="True"
-    x:Class="EfficienSee.Views.MainPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="EfficienSee.Views.MainPage">
     <ContentPage.Padding>
-        <OnPlatform
-            x:TypeArguments="Thickness"
-            iOS="15,20,15,0"
-            Android="15,0,15,0" />
+        <OnPlatform x:TypeArguments="Thickness"
+                    iOS="15,20,15,0"
+                    Android="15,0,15,0" />
     </ContentPage.Padding>
-    <Grid
-        x:Name="MainOuterGrid"
-        AutomationId="MainOuterGrid">
+    <Grid x:Name="MainOuterGrid"
+          AutomationId="MainOuterGrid">
         <Grid.RowDefinitions>
-            <RowDefinition
-                Height="50" />
+            <RowDefinition Height="50" />
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
@@ -38,119 +34,104 @@
             </Label.TextColor>
         </Label>
         <!--                                                    Time saved    -->
-        <StackLayout
-            Grid.Row="1"
-            Padding="15"
-            x:Name="TimeSavedStackLayout"
-            AutomationId="TimeSavedStackLayout">
-            <Label
-                x:Name="TimeSavedLabel"
-                AutomationId="TimeSavedLabel"
-                Text="{Binding TimeSavedLabelText}" />
-            <Grid
-                ColumnSpacing="0">
+        <StackLayout Grid.Row="1"
+                     Padding="15"
+                     x:Name="TimeSavedStackLayout"
+                     AutomationId="TimeSavedStackLayout">
+            <Label x:Name="TimeSavedLabel"
+                   AutomationId="TimeSavedLabel"
+                   Text="{Binding TimeSavedLabelText}" />
+            <Grid ColumnSpacing="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition
-                        Width="5*" />
-                    <ColumnDefinition
-                        Width="*" />
+                    <ColumnDefinition Width="5*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Slider
-                    x:Name="TimeSavedPerTaskSlider"
-                    AutomationId="TimeSavedPerTaskSlider"
-                    Value="{Binding TimeSavedPerTask}"
-                    Grid.Column="0"
-                    Minimum="0"
-                    Maximum="24"
-                    VerticalOptions="CenterAndExpand" />
-                <Label
-                    x:Name="TimeSavedValueLabel"
-                    AutomationId="TimeSavedValueLabel"
-                    Text="{Binding TimeSavedPerTask}"
-                    Grid.Column="1"
-                    HorizontalOptions="End"
-                    VerticalOptions="Center" />
+                <Slider x:Name="TimeSavedPerTaskSlider"
+                        AutomationId="TimeSavedPerTaskSlider"
+                        Value="{Binding TimeSavedPerTask}"
+                        Grid.Column="0"
+                        Minimum="1"
+                        Maximum="300"
+                        VerticalOptions="CenterAndExpand" />
+                <Label x:Name="TimeSavedValueLabel"
+                       AutomationId="TimeSavedValueLabel"
+                       Text="{Binding TimeSavedPerTask}"
+                       Grid.Column="1"
+                       HorizontalOptions="End"
+                       VerticalOptions="Center" />
             </Grid>
         </StackLayout>
         <!--                                                    Task frequency    -->
-        <StackLayout
-            Grid.Row="2"
-            Padding="15"
-            x:Name="TaskFrequencyStackLayout"
-            AutomationId="TaskFrequencyStackLayout">
-            <Label
-                x:Name="TaskFrequencyLabel"
-                AutomationId="TaskFrequencyLabel"
-                Text="{Binding TaskFrequencyLabelText}" />
-            <Grid
-                ColumnSpacing="0">
+        <StackLayout Grid.Row="2"
+                     Padding="15"
+                     x:Name="TaskFrequencyStackLayout"
+                     AutomationId="TaskFrequencyStackLayout">
+            <Label x:Name="TaskFrequencyLabel"
+                   AutomationId="TaskFrequencyLabel"
+                   Text="{Binding TaskFrequencyLabelText}" />
+            <Picker x:Name="FrequencyTimeUnit"
+                    AutomationId="FrequencyTimeUnit"
+                    ItemsSource="{Binding UnitsOfTime}"
+                    SelectedItem="{Binding SelectedFrequencyTimeUnit}" />
+            <Grid ColumnSpacing="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition
-                        Width="5*" />
-                    <ColumnDefinition
-                        Width="*" />
+                    <ColumnDefinition Width="5*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Slider
-                    x:Name="TaskFrequencySlider"
-                    AutomationId="TaskFrequencySlider"
-                    Value="{Binding TaskFrequency}"
-                    Grid.Column="0"
-                    Minimum="0"
-                    Maximum="100"
-                    VerticalOptions="CenterAndExpand" />
-                <Label
-                    x:Name="TaskFrequencyValueLabel"
-                    AutomationId="TaskFrequencyValueLabel"
-                    Text="{Binding TaskFrequency}"
-                    Grid.Column="1"
-                    HorizontalOptions="End"
-                    VerticalOptions="Center" />
+                <Slider Grid.Column="0"
+                        x:Name="TaskFrequencySlider"
+                        AutomationId="TaskFrequencySlider"
+                        Value="{Binding TaskFrequency}"
+                        Minimum="0"
+                        Maximum="100"
+                        VerticalOptions="CenterAndExpand" />
+                <Label Grid.Column="1"
+                       x:Name="TaskFrequencyValueLabel"
+                       AutomationId="TaskFrequencyValueLabel"
+                       Text="{Binding TaskFrequency}"
+                       HorizontalOptions="End"
+                       VerticalOptions="Center" />
             </Grid>
         </StackLayout>
         <!--                                                    Task Lifetime    -->
-        <StackLayout
-            Grid.Row="3"
-            Padding="15"
-            x:Name="TaskLifetimeStackLayout"
-            AutomationId="TaskLifetimeStackLayout">
-            <Label
-                x:Name="TaskLifetimeLabel"
-                AutomationId="TaskLifetimeLabel"
-                Text="{Binding TaskLifetimeLabelText}" />
-            <Grid
-                ColumnSpacing="0">
+        <StackLayout Grid.Row="3"
+                     Padding="15"
+                     x:Name="TaskLifetimeStackLayout"
+                     AutomationId="TaskLifetimeStackLayout">
+            <Label x:Name="TaskLifetimeLabel"
+                   AutomationId="TaskLifetimeLabel"
+                   Text="{Binding TaskLifetimeLabelText}" />
+            <Picker x:Name="LifetimeTimeUnit"
+                    AutomationId="LifetimeTimeUnit"
+                    ItemsSource="{Binding UnitsOfTime}"
+                    SelectedItem="{Binding SelectedTaskLifetimeTimeUnit}" />
+            <Grid ColumnSpacing="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition
-                        Width="5*" />
-                    <ColumnDefinition
-                        Width="*" />
+                    <ColumnDefinition Width="5*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Slider
-                    x:Name="TaskLifetimeSlider"
-                    AutomationId="TaskLifetimeSlider"
-                    Value="{Binding TaskLifetime}"
-                    Grid.Column="0"
-                    Minimum="0"
-                    Maximum="500"
-                    VerticalOptions="CenterAndExpand" />
-                <Label
-                    x:Name="TaskLifetimeValueLabel"
-                    AutomationId="TaskLifetimeValueLabel"
-                    Text="{Binding TaskLifetime}"
-                    Grid.Column="1"
-                    HorizontalOptions="End"
-                    VerticalOptions="Center" />
+                <Slider x:Name="TaskLifetimeSlider"
+                        AutomationId="TaskLifetimeSlider"
+                        Value="{Binding TaskLifetime}"
+                        Grid.Column="0"
+                        Minimum="0"
+                        Maximum="500"
+                        VerticalOptions="CenterAndExpand" />
+                <Label x:Name="TaskLifetimeValueLabel"
+                       AutomationId="TaskLifetimeValueLabel"
+                       Text="{Binding TaskLifetime}"
+                       Grid.Column="1"
+                       HorizontalOptions="End"
+                       VerticalOptions="Center" />
             </Grid>
         </StackLayout>
         <!--                                                    Max time to allot to efficieny    -->
-        <StackLayout
-            Grid.Row="4"
-            Padding="15"
-            x:Name="MaxTimeToAllot"
-            AutomationId="MaxTimeToAllot">
-            <Label
-                Text="{Binding MaxTimeToAllotLabelText}" />
-            <Label Text="{Binding MaxTimeToAllot, Converter={StaticResource intToSecondsDisplay}"
+        <StackLayout Grid.Row="4"
+                     Padding="15"
+                     x:Name="MaxTimeToAllot"
+                     AutomationId="MaxTimeToAllot">
+            <Label Text="{Binding MaxTimeToAllotLabelText}" />
+            <Label Text="{Binding MaxTimeToAllot, Converter={StaticResource minutesToString}"
                    HorizontalOptions="Center"
                    FontSize="Large"
                    FontAttributes="Bold">

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
 using EfficienSee.Services;
+using System.Collections.ObjectModel;
 
 namespace EfficienSee.ViewModels
 {
@@ -36,7 +37,7 @@ namespace EfficienSee.ViewModels
                 var valueDidChange = SetProperty(ref _timeSavedPerTask, value);
                 if (valueDidChange)
                 {
-                    MaxTimeToAllot = GetMaxTimeToAllot();
+                    MaxTimeToAllot = GetMaxTimeToAllotInMinutes();
                 }
             }
         }
@@ -57,7 +58,7 @@ namespace EfficienSee.ViewModels
                 var valueDidChange = SetProperty(ref _taskFrequency, value);
                 if (valueDidChange)
                 {
-                    MaxTimeToAllot = GetMaxTimeToAllot();
+                    MaxTimeToAllot = GetMaxTimeToAllotInMinutes();
                 }
             }
         }
@@ -78,7 +79,7 @@ namespace EfficienSee.ViewModels
                 var valueDidChange = SetProperty(ref _taskLifetime, value);
                 if (valueDidChange)
                 {
-                    MaxTimeToAllot = GetMaxTimeToAllot();
+                    MaxTimeToAllot = GetMaxTimeToAllotInMinutes();
                 }
             }
         }
@@ -97,14 +98,40 @@ namespace EfficienSee.ViewModels
             set { SetProperty(ref _maxTimeToAllot, value); }
         }
 
+        private ObservableCollection<string> _unitsOfTime;
+        public ObservableCollection<string> UnitsOfTime
+        {
+            get { return _unitsOfTime; }
+            set { SetProperty(ref _unitsOfTime, value); }
+        }
+
+        private string _selectedFrequencyTimeUnit;
+        public string SelectedFrequencyTimeUnit
+        {
+            get { return _selectedFrequencyTimeUnit; }
+            set { SetProperty(ref _selectedFrequencyTimeUnit, value); }
+        }
+
+        private string _selectedTaskLifetimeTimeUnit;
+        public string SelectedTaskLifetimeTimeUnit
+        {
+            get { return _selectedTaskLifetimeTimeUnit; }
+            set { SetProperty(ref _selectedTaskLifetimeTimeUnit, value); }
+        }
+
         public MainPageViewModel(ITimeSavingsCalculator timeSavingsCalculator)
         {
             Debug.WriteLine($"**** {this.GetType().Name}.{nameof(MainPageViewModel)}:  ctor");
 
             _timeSavingsCalculator = timeSavingsCalculator;
 
+            UnitsOfTime = new ObservableCollection<string>
+            {
+                "per day", "per week", "per month", "per year"
+            };
+
             Title = "EfficienSee";
-            TimeSavedLabelText = "By how much time could you shorten your task, given some effort to make some part of it automated, or more efficient?";
+            TimeSavedLabelText = "By how many minutes could you shorten your task, given some effort to make some part of it automated, or more efficient?";
             TaskFrequencyLabelText = "How frequently do you it?";
             TaskLifetimeLabelText = "How long will you keep performing this task?";
             MaxTimeToAllotLabelText = "You can spend this much time before spending more time than you will save:";
@@ -133,13 +160,18 @@ namespace EfficienSee.ViewModels
 
         #endregion End IDestructible
 
-        internal double GetMaxTimeToAllot()
+        internal double GetMaxTimeToAllotInMinutes()
         {
-            Debug.WriteLine($"**** {this.GetType().Name}.{nameof(GetMaxTimeToAllot)}");
-            TimeSpan maxTime = _timeSavingsCalculator.GetTotalTimeSavedForTask(
-                TimeSpan.FromHours(TimeSavedPerTask), TaskFrequency, TaskLifetime);
+            Debug.WriteLine($"**** {this.GetType().Name}.{nameof(GetMaxTimeToAllotInMinutes)}");
+            
+            var maxTime = _timeSavingsCalculator.GetMaxTimeSaved(
+                TimeSpan.FromMinutes(TimeSavedPerTask), 
+                TaskFrequency, 
+                SelectedFrequencyTimeUnit, 
+                TaskLifetime,
+                SelectedTaskLifetimeTimeUnit);
 
-            return maxTime.TotalHours;
+            return maxTime.TotalMinutes;
         }
     }
 }

@@ -4,20 +4,20 @@ using Xamarin.Forms;
 
 namespace EfficienSee.Views.ValueConverters
 {
-    public class IntSecondsToStringConverter : IValueConverter
+    public class MinutesToStringConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            int seconds;
+            double minutes;
             string display = string.Empty;
 
-            if (!Int32.TryParse(value.ToString(), out seconds))
+            if (!double.TryParse(value.ToString(), out minutes))
             {
                 display = "???";
             }
             else
             {
-                display = $"{seconds:n} seconds";
+                display = $"{minutes:n} minutes";
             }
 
             return display;

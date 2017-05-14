@@ -26,13 +26,17 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <!--                                                    Header Row    -->
-        <Label
-            Grid.Row="0"
-            Text="{Binding Title}"
-            HorizontalOptions="Center"
-            FontSize="Large"
-            FontAttributes="Bold"
-            TextColor="Navy" />
+        <Label Grid.Row="0"
+               Text="{Binding Title}"
+               HorizontalOptions="Center"
+               FontSize="Large"
+               FontAttributes="Bold">
+            <Label.TextColor>
+                <OnPlatform x:TypeArguments="Color"
+                            Android="White"
+                            iOS="Navy" />
+            </Label.TextColor>
+        </Label>
         <!--                                                    Time saved    -->
         <StackLayout
             Grid.Row="1"
@@ -146,12 +150,16 @@
             AutomationId="MaxTimeToAllot">
             <Label
                 Text="{Binding MaxTimeToAllotLabelText}" />
-            <Label
-                Text="{Binding MaxTimeToAllot, Converter={StaticResource intToSecondsDisplay}"
-                HorizontalOptions="Center"
-                FontSize="Large"
-                FontAttributes="Bold"
-                TextColor="Navy" />
+            <Label Text="{Binding MaxTimeToAllot, Converter={StaticResource intToSecondsDisplay}"
+                   HorizontalOptions="Center"
+                   FontSize="Large"
+                   FontAttributes="Bold">
+                <Label.TextColor>
+                    <OnPlatform x:TypeArguments="Color"
+                                Android="White"
+                                iOS="Navy" />
+                </Label.TextColor>
+            </Label>
         </StackLayout>
     </Grid>
 </ContentPage>

@@ -50,7 +50,7 @@
                         AutomationId="TimeSavedPerTaskSlider"
                         Value="{Binding TimeSavedPerTask}"
                         Grid.Column="0"
-                        Maximum="300"
+                        Maximum="120"
                         Minimum="1"
                         VerticalOptions="CenterAndExpand" />
                 <Label x:Name="TimeSavedValueLabel"

@@ -71,7 +71,7 @@
                    Text="{Binding TaskFrequencyLabelText}" />
             <Picker x:Name="FrequencyTimeUnit"
                     AutomationId="FrequencyTimeUnit"
-                    ItemsSource="{Binding UnitsOfTime}"
+                    ItemsSource="{Binding FrequencyUnitsOfTime}"
                     SelectedItem="{Binding SelectedFrequencyTimeUnit}" />
             <Grid ColumnSpacing="0">
                 <Grid.ColumnDefinitions>
@@ -131,7 +131,7 @@
                      x:Name="MaxTimeToAllot"
                      AutomationId="MaxTimeToAllot">
             <Label Text="{Binding MaxTimeToAllotLabelText}" />
-            <Label Text="{Binding MaxTimeToAllot, Converter={StaticResource minutesToString}"
+            <Label Text="{Binding MaxTimeToAllot, Converter={StaticResource timeSpanToString}"
                    HorizontalOptions="Center"
                    FontSize="Large"
                    FontAttributes="Bold">

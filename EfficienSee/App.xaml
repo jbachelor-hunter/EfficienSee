@@ -7,7 +7,7 @@
 	x:Class="EfficienSee.App">
     <prism:PrismApplication.Resources>
         <ResourceDictionary>
-            <converters:MinutesToStringConverter x:Key="minutesToString" />
+            <converters:TimeSpanToStringConverter x:Key="timeSpanToString" />
         </ResourceDictionary>
     </prism:PrismApplication.Resources>
 </prism:PrismApplication>

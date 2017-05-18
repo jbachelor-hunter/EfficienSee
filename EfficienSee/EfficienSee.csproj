@@ -40,7 +40,7 @@
     <Compile Include="Infrastructure\Globals.cs" />
     <Compile Include="Services\TimeSavingsCalculator.cs" />
     <Compile Include="Services\ITimeSavingsCalculator.cs" />
-    <Compile Include="Views\ValueConverters\MinutesToStringConverter.cs" />
+    <Compile Include="Views\ValueConverters\TimeSpanToStringConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">

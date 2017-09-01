@@ -10,16 +10,29 @@ namespace EfficienSeeTests.Services
     {
         TimeSavingsCalculator timeSavingsCalculator;
 
-        [SetUp]
+        [OneTimeSetUp]
         public void ClassInit()
         {
+            Console.WriteLine($"\n\n**** {this.GetType().Name}.{nameof(ClassInit)}\n\n");
+        }
 
+        [OneTimeTearDown]
+        public void ClassTearDown()
+        {
+            Console.WriteLine($"\n\n**** {this.GetType().Name}.{nameof(ClassTearDown)}\n\n");
         }
 
         [SetUp]
         public void TestInit()
         {
+            Console.WriteLine($"**** {this.GetType().Name}.{nameof(TestInit)}");
             timeSavingsCalculator = new TimeSavingsCalculator();
+        }
+
+        [TearDown]
+        public void TestTearDown()
+        {
+            Console.WriteLine($"**** {this.GetType().Name}.{nameof(TestTearDown)}\n");
         }
 
         [Test]

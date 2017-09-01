@@ -15,7 +15,7 @@ namespace EfficienSeeTests.ViewModels
         MainPageViewModel mainPageViewModel;
         ITimeSavingsCalculator timeSavingsCalculatorSub;
 
-        [TestFixtureSetUp]
+        [SetUp]
         public void ClassInit()
         {
 

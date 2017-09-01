@@ -21,6 +21,49 @@ namespace EfficienSee.ViewModels
 			set { SetProperty(ref _title, value); }
 		}
 
+		private int _frequencyMinValue;
+		public int FrequencyMinValue
+		{
+			get { return _frequencyMinValue; }
+			set { SetProperty(ref _frequencyMinValue, value); }
+		}
+
+		private int _frequencyMaxValue;
+		public int FrequencyMaxValue
+		{
+			get { return _frequencyMaxValue; }
+			set { SetProperty(ref _frequencyMaxValue, value); }
+		}
+
+
+		private int _timeSavedMinValue;
+		public int TimeSavedMinValue
+		{
+			get { return _timeSavedMinValue; }
+			set { SetProperty(ref _timeSavedMinValue, value); }
+		}
+
+		private int _timeSavedMaxValue;
+		public int TimeSavedMaxValue
+		{
+			get { return _timeSavedMaxValue; }
+			set { SetProperty(ref _timeSavedMaxValue, value); }
+		}
+
+		private int _taskLifetimeMinValue;
+		public int TaskLifetimeMinValue
+		{
+			get { return _taskLifetimeMinValue; }
+			set { SetProperty(ref _taskLifetimeMinValue, value); }
+		}
+
+		private int _taskLifetimeMaxValue;
+		public int TaskLifetimeMaxValue
+		{
+			get { return _taskLifetimeMaxValue; }
+			set { SetProperty(ref _taskLifetimeMaxValue, value); }
+		}
+
 		private string _timeSavedLabelText;
 		public string TimeSavedLabelText
 		{
